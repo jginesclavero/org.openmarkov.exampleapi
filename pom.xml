@@ -1,0 +1,126 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.openmarkov</groupId>
+    <artifactId>org.openmarkov.exampleAPI</artifactId>
+    <version>0.3.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--<additionalparam>-Xdoclint:none</additionalparam>-->
+        <openmarkov.version>0.3.0-SNAPSHOT</openmarkov.version>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.7.0</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+                <!--
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.0.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                -->
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <executions>
+                        <execution>
+                            <id>javadoc-jar</id>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                            <configuration>
+                                <!-- switch on dependency-driven aggregation -->
+                                <includeDependencySources>true</includeDependencySources>
+                                <dependencySourceIncludes>
+                                    <dependencySourceInclude>org.openmarkov:*</dependencySourceInclude>
+                                </dependencySourceIncludes>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.0.2</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>test-jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+	<dependencies>
+        <dependency>
+            <groupId>org.openmarkov</groupId>
+            <artifactId>org.openmarkov.full</artifactId>
+            <version>0.3.0-SNAPSHOT</version>
+        </dependency>
+	</dependencies>
+
+
+    <repositories>
+        <repository>
+            <id>release</id>
+            <name>OpenMarkov</name>
+            <url>http://62.204.199.55:8081/repository/development-releases/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>snapshots</id>
+            <name>OpenMarkov Snapshots</name>
+            <url>http://62.204.199.55:8081/repository/development-snapshots/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>releases</id>
+            <name>Releases</name>
+            <url>http://62.204.199.55:8081/repository/development-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>snapshots</id>
+            <name>Snapshots</name>
+            <url>http://62.204.199.55:8081/repository/development-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>
